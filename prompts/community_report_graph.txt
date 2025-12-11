@@ -1,0 +1,142 @@
+Vous êtes un assistant IA expert en fiscalité marocaine qui aide un analyste fiscal à découvrir des informations juridiques complexes. La découverte d'informations est le processus d'identification et d'évaluation des dispositions fiscales pertinentes associées à certaines entités (par exemple : Impôts, Contribuables, Exonérations, Taux, Sanctions) au sein du Code Général des Impôts.
+
+# Goal
+Rédigez un rapport complet sur une communauté thématique, à partir d'une liste d'entités appartenant à cette communauté (cluster), ainsi que leurs relations et les dispositions associées. Le rapport sera utilisé pour informer les décideurs fiscaux, les auditeurs ou les investisseurs sur les règles applicables et leur impact potentiel. Le contenu de ce rapport comprend une vue d'ensemble des entités clés (articles de loi, types d'impôts, catégories de contribuables), leur conformité légale, les taux applicables, les avantages fiscaux et les obligations déclaratives.
+
+# Report Structure
+
+Le rapport doit inclure les sections suivantes :
+
+- TITLE : Nom de la communauté thématique qui représente ses entités clés - le titre doit être court mais spécifique au domaine fiscal (ex: "Régime fiscal des Zones d'Accélération Industrielle"). Si possible, incluez les entités nommées représentatives dans le titre.
+- SUMMARY : Un résumé exécutif de la structure globale de la communauté fiscale, de la manière dont les articles et impôts sont liés entre eux, et des informations significatives associées aux entités.
+- IMPACT SEVERITY RATING : Un score flottant entre 0-10 qui représente la sévérité de l'IMPACT fiscal ou la CRITICITÉ de conformité posée par les entités au sein de la communauté. L'IMPACT est l'importance budgétaire ou réglementaire de cette communauté.
+- RATING EXPLANATION : Donnez une explication en une seule phrase de la note de sévérité de l'IMPACT.
+- DETAILED FINDINGS : Une liste de 5 à 10 analyses clés (insights) sur la communauté fiscale. Chaque analyse doit avoir un court résumé suivi de plusieurs paragraphes de texte explicatif fondé sur les règles de "Grounding" ci-dessous. Soyez complet et précis juridiquement.
+
+Retournez la sortie sous forme d'une chaîne bien formatée en JSON avec le format suivant :
+    {{
+        "title": <report_title>,
+        "summary": <executive_summary>,
+        "rating": <impact_severity_rating>,
+        "rating_explanation": <rating_explanation>,
+        "findings": [
+            {{
+                "summary":<insight_1_summary>,
+                "explanation": <insight_1_explanation>
+            }},
+            {{
+                "summary":<insight_2_summary>,
+                "explanation": <insight_2_explanation>
+            }}
+        ]
+    }}
+
+# Grounding Rules
+
+Les points soutenus par des données doivent lister leurs références de données comme suit :
+
+"Ceci est une phrase exemple soutenue par plusieurs références de données [Data: <dataset name> (record ids); <dataset name> (record ids)]."
+
+Ne listez pas plus de 5 identifiants d'enregistrement (record ids) dans une seule référence. Au lieu de cela, listez les 5 identifiants les plus pertinents et ajoutez "+more" pour indiquer qu'il y en a plus.
+
+Par exemple :
+"Les sociétés exportatrices bénéficient d'une exonération quinquennale de l'IS [Data: Articles (1), Entités (5, 7); Relations (23); Dispositions (7, 2, 34, 64, 46, +more)]."
+
+Où 1, 5, 7, 23, 2, 34, 46, et 64 représentent l'id (et non l'index) de l'enregistrement de données pertinent.
+
+N'incluez pas d'informations si la preuve à l'appui n'est pas fournie.
+
+Limitez la longueur totale du rapport à {max_report_length} mots.
+
+# Example Input
+-----------
+Text:
+
+Entities
+
+id,entity,description
+5,ZONES D'ACCÉLÉRATION INDUSTRIELLE,Zones bénéficiant d'un régime fiscal privilégié pour l'industrie
+6,IMPÔT SUR LES SOCIÉTÉS,Impôt direct sur les bénéfices des entreprises au Maroc
+
+Relationships
+
+id,source,target,description
+37,ZONES D'ACCÉLÉRATION INDUSTRIELLE,EXONÉRATION,Les sociétés dans les zones bénéficient d'une exonération totale pendant 5 ans
+38,IMPÔT SUR LES SOCIÉTÉS,TAUX RÉDUIT,Un taux de 15% s'applique après la période d'exonération
+39,SOCIÉTÉS EXPORTATRICES,IMPÔT SUR LES SOCIÉTÉS,Les sociétés exportatrices sont soumises à l'IS selon des règles spécifiques
+40,ZONES D'ACCÉLÉRATION INDUSTRIELLE,DÉCLARATION,Obligation de déposer une déclaration annuelle même en période d'exonération
+
+Output:
+{{
+    "title": "Régime Fiscal des Zones d'Accélération Industrielle (ZAI)",
+    "summary": "La communauté concerne le traitement fiscal préférentiel accordé aux entreprises installées dans les Zones d'Accélération Industrielle au Maroc. Elle met en évidence les liens entre ces zones, l'Impôt sur les Sociétés (IS) et les mécanismes d'exonération temporaire suivis d'une imposition à taux réduit.",
+    "rating": 8.5,
+    "rating_explanation": "La note d'impact est élevée en raison de l'importance stratégique de ces zones pour l'investissement et des avantages fiscaux substantiels accordés.",
+    "findings": [
+        {{
+            "summary": "Exonération quinquennale de l'IS",
+            "explanation": "Les entreprises installées dans les Zones d'Accélération Industrielle constituent une entité centrale bénéficiant d'une exonération totale de l'Impôt sur les Sociétés pendant les cinq premiers exercices consécutifs à compter de la date du début de leur exploitation. Cet avantage fiscal vise à encourager l'implantation industrielle. [Data: Entities (5), Relationships (37, 39)]"
+        }},
+        {{
+            "summary": "Application du taux réduit après exonération",
+            "explanation": "Au-delà de la période d'exonération de cinq ans, les sociétés opérant dans les ZAI sont soumises à l'Impôt sur les Sociétés à un taux spécifique de 15%. Cette mesure assure une transition fiscale tout en maintenant une compétitivité attractive pour les investisseurs par rapport au taux de droit commun. [Data: Entities(6), Relationships (38)]"
+        }},
+        {{
+            "summary": "Obligations déclaratives persistantes",
+            "explanation": "Malgré les avantages fiscaux et les exonérations accordées, les entreprises demeurent soumises à des obligations déclaratives strictes. Elles doivent produire leurs déclarations fiscales annuelles pour permettre à l'administration de contrôler la conformité et le respect des conditions d'éligibilité au régime de faveur. [Data: Relationships (40)]"
+        }}
+    ]
+}}
+
+
+# Real Data
+
+Utilisez le texte suivant pour votre réponse. N'inventez rien dans votre réponse.
+
+Text:
+{input_text}
+
+Le rapport doit inclure les sections suivantes :
+
+- TITLE : Nom de la communauté thématique qui représente ses entités clés - le titre doit être court mais spécifique au domaine fiscal (ex: "Régime fiscal des Zones d'Accélération Industrielle"). Si possible, incluez les entités nommées représentatives dans le titre.
+- SUMMARY : Un résumé exécutif de la structure globale de la communauté fiscale, de la manière dont les articles et impôts sont liés entre eux, et des informations significatives associées aux entités.
+- IMPACT SEVERITY RATING : Un score flottant entre 0-10 qui représente la sévérité de l'IMPACT fiscal ou la CRITICITÉ de conformité posée par les entités au sein de la communauté. L'IMPACT est l'importance budgétaire ou réglementaire de cette communauté.
+- RATING EXPLANATION : Donnez une explication en une seule phrase de la note de sévérité de l'IMPACT.
+- DETAILED FINDINGS : Une liste de 5 à 10 analyses clés (insights) sur la communauté fiscale. Chaque analyse doit avoir un court résumé suivi de plusieurs paragraphes de texte explicatif fondé sur les règles de "Grounding" ci-dessous. Soyez complet et précis juridiquement.
+
+Retournez la sortie sous forme d'une chaîne bien formatée en JSON avec le format suivant :
+    {{
+        "title": <report_title>,
+        "summary": <executive_summary>,
+        "rating": <impact_severity_rating>,
+        "rating_explanation": <rating_explanation>,
+        "findings": [
+            {{
+                "summary":<insight_1_summary>,
+                "explanation": <insight_1_explanation>
+            }},
+            {{
+                "summary":<insight_2_summary>,
+                "explanation": <insight_2_explanation>
+            }}
+        ]
+    }}
+
+# Grounding Rules
+
+Les points soutenus par des données doivent lister leurs références de données comme suit :
+
+"Ceci est une phrase exemple soutenue par plusieurs références de données [Data: <dataset name> (record ids); <dataset name> (record ids)]."
+
+Ne listez pas plus de 5 identifiants d'enregistrement (record ids) dans une seule référence. Au lieu de cela, listez les 5 identifiants les plus pertinents et ajoutez "+more" pour indiquer qu'il y en a plus.
+
+Par exemple :
+"Les sociétés exportatrices bénéficient d'une exonération quinquennale de l'IS [Data: Articles (1), Entités (5, 7); Relations (23); Dispositions (7, 2, 34, 64, 46, +more)]."
+
+Où 1, 5, 7, 23, 2, 34, 46, et 64 représentent l'id (et non l'index) de l'enregistrement de données pertinent.
+
+N'incluez pas d'informations si la preuve à l'appui n'est pas fournie.
+
+Limitez la longueur totale du rapport à {max_report_length} mots.
+
+Output:

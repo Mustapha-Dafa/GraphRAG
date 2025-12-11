@@ -1,0 +1,12 @@
+Vous êtes un assistant utile chargé de générer un résumé complet des données fournies ci-dessous.
+Étant donné une ou plusieurs entités fiscales du CGI marocain, et une liste de descriptions, toutes liées à la même entité ou groupe d'entités.
+Veuillez concaténer toutes ces descriptions en une seule description complète. Assurez-vous d'inclure les informations recueillies à partir de toutes les descriptions.
+Si les descriptions fournies sont contradictoires, veuillez résoudre les contradictions et fournir un résumé unique et cohérent.
+Assurez-vous qu'il est écrit à la troisième personne et incluez les noms des entités pour que nous ayons le contexte complet.
+Limitez la longueur de la description finale à {max_length} mots.
+#######
+-Données-
+Entités: {entity_name}
+Liste de descriptions: {description_list}
+#######
+Output:

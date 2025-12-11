@@ -1,0 +1,139 @@
+-Objectif-
+Étant donné un document texte du Code Général des Impôts (CGI) marocain potentiellement pertinent pour cette activité et une liste de types d'entités, identifier toutes les entités de ces types à partir du texte et toutes les relations entre les entités identifiées.
+ 
+-Étapes-
+1. Identifier toutes les entités. Pour chaque entité identifiée, extraire les informations suivantes :
+- entity_name: Nom de l'entité, en majuscules
+- entity_type: Un des types suivants : [{entity_types}]
+- entity_description: Description complète des attributs et activités de l'entité
+Formater chaque entité comme ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+ 
+2. Parmi les entités identifiées à l'étape 1, identifier toutes les paires de (source_entity, target_entity) qui sont *clairement liées* l'une à l'autre.
+Pour chaque paire d'entités liées, extraire les informations suivantes :
+- source_entity: nom de l'entité source, tel qu'identifié à l'étape 1
+- target_entity: nom de l'entité cible, tel qu'identifié à l'étape 1
+- relationship_description: explication de la raison pour laquelle vous pensez que l'entité source et l'entité cible sont liées l'une à l'autre
+- relationship_strength: un score numérique indiquant la force de la relation entre l'entité source et l'entité cible
+Format chaque relation comme ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+ 
+3. Retourner la sortie en français comme une liste unique de toutes les entités et relations identifiées aux étapes 1 et 2. Utiliser **{record_delimiter}** comme délimiteur de liste.
+ 
+4. Une fois terminé, afficher {completion_delimiter}
+ 
+######################
+-Exemples-
+######################
+Exemple 1:
+Entity_types: TEXTE_LEGAL,IMPOT_TAXE,TAUX_BAREME,CONTRIBUABLE,ORGANISME_PUBLIC,OBLIGATION_FISCALE,DELAI_DATE
+Texte:
+L'impôt sur les sociétés (IS) est établi au taux de 20% pour les entreprises industrielles selon l'article 19 du CGI. La Direction Générale des Impôts (DGI) est responsable du recouvrement de cet impôt auprès des sociétés marocaines. Les sociétés doivent déposer leur déclaration fiscale avant le 31 mars de chaque année.
+######################
+Output:
+("entity"{tuple_delimiter}ARTICLE 19 CGI{tuple_delimiter}TEXTE_LEGAL{tuple_delimiter}Article 19 du Code Général des Impôts qui établit le taux de l'impôt sur les sociétés pour les entreprises industrielles)
+{record_delimiter}
+("entity"{tuple_delimiter}IMPOT SUR LES SOCIETES{tuple_delimiter}IMPOT_TAXE{tuple_delimiter}L'impôt sur les sociétés (IS) est un impôt direct établi au taux de 20% pour les entreprises industrielles)
+{record_delimiter}
+("entity"{tuple_delimiter}TAUX 20%{tuple_delimiter}TAUX_BAREME{tuple_delimiter}Taux d'imposition de 20% applicable aux entreprises industrielles au titre de l'IS)
+{record_delimiter}
+("entity"{tuple_delimiter}ENTREPRISES INDUSTRIELLES{tuple_delimiter}CONTRIBUABLE{tuple_delimiter}Entreprises industrielles soumises à l'impôt sur les sociétés au taux de 20%)
+{record_delimiter}
+("entity"{tuple_delimiter}SOCIETES MAROCAINES{tuple_delimiter}CONTRIBUABLE{tuple_delimiter}Sociétés marocaines redevables de l'impôt sur les sociétés)
+{record_delimiter}
+("entity"{tuple_delimiter}DIRECTION GENERALE DES IMPOTS{tuple_delimiter}ORGANISME_PUBLIC{tuple_delimiter}La Direction Générale des Impôts (DGI) est l'organisme public responsable du recouvrement de l'impôt sur les sociétés)
+{record_delimiter}
+("entity"{tuple_delimiter}DECLARATION FISCALE{tuple_delimiter}OBLIGATION_FISCALE{tuple_delimiter}Obligation de déposer la déclaration fiscale des sociétés)
+{record_delimiter}
+("entity"{tuple_delimiter}31 MARS{tuple_delimiter}DELAI_DATE{tuple_delimiter}Date limite du 31 mars de chaque année pour le dépôt de la déclaration fiscale des sociétés)
+{record_delimiter}
+("relationship"{tuple_delimiter}ARTICLE 19 CGI{tuple_delimiter}IMPOT SUR LES SOCIETES{tuple_delimiter}L'article 19 du CGI établit les dispositions relatives à l'impôt sur les sociétés{tuple_delimiter}10)
+{record_delimiter}
+("relationship"{tuple_delimiter}IMPOT SUR LES SOCIETES{tuple_delimiter}TAUX 20%{tuple_delimiter}L'IS est fixé au taux de 20% pour les entreprises industrielles{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}ENTREPRISES INDUSTRIELLES{tuple_delimiter}IMPOT SUR LES SOCIETES{tuple_delimiter}Les entreprises industrielles sont soumises à l'impôt sur les sociétés{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}DIRECTION GENERALE DES IMPOTS{tuple_delimiter}IMPOT SUR LES SOCIETES{tuple_delimiter}La DGI est responsable du recouvrement de l'impôt sur les sociétés{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}SOCIETES MAROCAINES{tuple_delimiter}DECLARATION FISCALE{tuple_delimiter}Les sociétés marocaines doivent déposer leur déclaration fiscale{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}DECLARATION FISCALE{tuple_delimiter}31 MARS{tuple_delimiter}La déclaration fiscale doit être déposée avant le 31 mars{tuple_delimiter}9)
+{completion_delimiter}
+
+######################
+Exemple 2:
+Entity_types: TEXTE_LEGAL,IMPOT_TAXE,BASE_IMPOSABLE,TAUX_BAREME,OPERATIONS,EXONERATION,DEDUCTION
+Texte:
+Selon l'article 73 du CGI, la TVA est fixée au taux normal de 20% sur le chiffre d'affaires. Un taux réduit de 14% s'applique aux opérations de transport. Les exportations de biens et de marchandises bénéficient d'une exonération totale conformément à l'article 92. Les entreprises peuvent déduire la TVA ayant grevé les éléments du prix de leurs opérations imposables.
+######################
+Output:
+("entity"{tuple_delimiter}ARTICLE 73 CGI{tuple_delimiter}TEXTE_LEGAL{tuple_delimiter}Article 73 du Code Général des Impôts qui fixe le taux normal de la TVA)
+{record_delimiter}
+("entity"{tuple_delimiter}ARTICLE 92 CGI{tuple_delimiter}TEXTE_LEGAL{tuple_delimiter}Article 92 du Code Général des Impôts qui prévoit l'exonération totale de TVA pour les exportations)
+{record_delimiter}
+("entity"{tuple_delimiter}TVA{tuple_delimiter}IMPOT_TAXE{tuple_delimiter}Taxe sur la valeur ajoutée fixée au taux normal de 20% sur le chiffre d'affaires)
+{record_delimiter}
+("entity"{tuple_delimiter}CHIFFRE D'AFFAIRES{tuple_delimiter}BASE_IMPOSABLE{tuple_delimiter}Chiffre d'affaires constituant la base imposable de la TVA)
+{record_delimiter}
+("entity"{tuple_delimiter}TAUX NORMAL 20%{tuple_delimiter}TAUX_BAREME{tuple_delimiter}Taux normal de TVA de 20% applicable aux opérations standard)
+{record_delimiter}
+("entity"{tuple_delimiter}TAUX REDUIT 14%{tuple_delimiter}TAUX_BAREME{tuple_delimiter}Taux réduit de TVA de 14% applicable aux opérations de transport)
+{record_delimiter}
+("entity"{tuple_delimiter}OPERATIONS DE TRANSPORT{tuple_delimiter}OPERATIONS{tuple_delimiter}Opérations de transport soumises au taux réduit de 14% de TVA)
+{record_delimiter}
+("entity"{tuple_delimiter}EXPORTATIONS DE BIENS{tuple_delimiter}OPERATIONS{tuple_delimiter}Exportations de biens et de marchandises bénéficiant d'une exonération totale de TVA)
+{record_delimiter}
+("entity"{tuple_delimiter}EXONERATION EXPORTATIONS{tuple_delimiter}EXONERATION{tuple_delimiter}Exonération totale de TVA pour les exportations de biens et de marchandises)
+{record_delimiter}
+("entity"{tuple_delimiter}DEDUCTION TVA{tuple_delimiter}DEDUCTION{tuple_delimiter}Droit à déduction de la TVA ayant grevé les éléments du prix des opérations imposables)
+{record_delimiter}
+("relationship"{tuple_delimiter}ARTICLE 73 CGI{tuple_delimiter}TVA{tuple_delimiter}L'article 73 du CGI fixe le taux normal de la TVA{tuple_delimiter}10)
+{record_delimiter}
+("relationship"{tuple_delimiter}TVA{tuple_delimiter}CHIFFRE D'AFFAIRES{tuple_delimiter}La TVA est calculée sur le chiffre d'affaires{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}TVA{tuple_delimiter}TAUX NORMAL 20%{tuple_delimiter}La TVA est fixée au taux normal de 20%{tuple_delimiter}10)
+{record_delimiter}
+("relationship"{tuple_delimiter}OPERATIONS DE TRANSPORT{tuple_delimiter}TAUX REDUIT 14%{tuple_delimiter}Les opérations de transport sont soumises au taux réduit de 14%{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}EXPORTATIONS DE BIENS{tuple_delimiter}EXONERATION EXPORTATIONS{tuple_delimiter}Les exportations bénéficient d'une exonération totale de TVA{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}ARTICLE 92 CGI{tuple_delimiter}EXONERATION EXPORTATIONS{tuple_delimiter}L'article 92 du CGI prévoit l'exonération totale pour les exportations{tuple_delimiter}10)
+{record_delimiter}
+("relationship"{tuple_delimiter}DEDUCTION TVA{tuple_delimiter}TVA{tuple_delimiter}Les entreprises peuvent déduire la TVA ayant grevé leurs opérations imposables{tuple_delimiter}8)
+{completion_delimiter}
+
+######################
+Exemple 3:
+Entity_types: TEXTE_LEGAL,IMPOT_TAXE,CATEGORIE_REVENU,REGIME_FISCAL,CONTRIBUABLE,SANCTION,DELAI_DATE
+Texte:
+L'article 73 du CGI stipule que les revenus salariaux sont soumis à l'impôt sur le revenu selon le barème progressif. Les professionnels exerçant en régime de l'auto-entrepreneur bénéficient d'un abattement forfaitaire. Le défaut de déclaration dans les délais prescrits entraîne une majoration de 10%. La déclaration annuelle doit être déposée avant le 1er mars.
+######################
+Output:
+("entity"{tuple_delimiter}ARTICLE 73 CGI{tuple_delimiter}TEXTE_LEGAL{tuple_delimiter}Article 73 du Code Général des Impôts relatif à l'imposition des revenus salariaux)
+{record_delimiter}
+("entity"{tuple_delimiter}IMPOT SUR LE REVENU{tuple_delimiter}IMPOT_TAXE{tuple_delimiter}Impôt sur le revenu appliqué selon un barème progressif)
+{record_delimiter}
+("entity"{tuple_delimiter}REVENUS SALARIAUX{tuple_delimiter}CATEGORIE_REVENU{tuple_delimiter}Revenus salariaux soumis à l'impôt sur le revenu selon le barème progressif)
+{record_delimiter}
+("entity"{tuple_delimiter}REGIME AUTO-ENTREPRENEUR{tuple_delimiter}REGIME_FISCAL{tuple_delimiter}Régime de l'auto-entrepreneur bénéficiant d'un abattement forfaitaire)
+{record_delimiter}
+("entity"{tuple_delimiter}PROFESSIONNELS AUTO-ENTREPRENEURS{tuple_delimiter}CONTRIBUABLE{tuple_delimiter}Professionnels exerçant en régime de l'auto-entrepreneur)
+{record_delimiter}
+("entity"{tuple_delimiter}MAJORATION 10%{tuple_delimiter}SANCTION{tuple_delimiter}Majoration de 10% appliquée en cas de défaut de déclaration dans les délais prescrits)
+{record_delimiter}
+("entity"{tuple_delimiter}1ER MARS{tuple_delimiter}DELAI_DATE{tuple_delimiter}Date limite du 1er mars pour le dépôt de la déclaration annuelle)
+{record_delimiter}
+("relationship"{tuple_delimiter}ARTICLE 73 CGI{tuple_delimiter}REVENUS SALARIAUX{tuple_delimiter}L'article 73 du CGI régit l'imposition des revenus salariaux{tuple_delimiter}10)
+{record_delimiter}
+("relationship"{tuple_delimiter}REVENUS SALARIAUX{tuple_delimiter}IMPOT SUR LE REVENU{tuple_delimiter}Les revenus salariaux sont soumis à l'impôt sur le revenu{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}PROFESSIONNELS AUTO-ENTREPRENEURS{tuple_delimiter}REGIME AUTO-ENTREPRENEUR{tuple_delimiter}Les professionnels exercent en régime de l'auto-entrepreneur{tuple_delimiter}9)
+{record_delimiter}
+("relationship"{tuple_delimiter}MAJORATION 10%{tuple_delimiter}1ER MARS{tuple_delimiter}La majoration de 10% s'applique en cas de non-respect de la date limite du 1er mars{tuple_delimiter}8)
+{completion_delimiter}
+
+######################
+-Données réelles-
+######################
+Entity_types: {entity_types}
+Texte: {input_text}
+######################
+Output:
