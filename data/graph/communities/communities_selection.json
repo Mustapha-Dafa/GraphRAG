@@ -1,0 +1,99 @@
+{
+  "stats": {
+    "total_communities_raw": 1347,
+    "total_communities_kept_min_size": 61,
+    "min_size": 5,
+    "coverage_target": 0.85,
+    "cap": 500,
+    "selected_N": 21,
+    "approx_coverage_over_kept": 0.8520874751491053,
+    "kept_total_members_sum": 2515,
+    "selected_members_sum": 2143
+  },
+  "selected": [
+    {
+      "community_id": "8",
+      "nb_members": 271
+    },
+    {
+      "community_id": "25",
+      "nb_members": 172
+    },
+    {
+      "community_id": "77",
+      "nb_members": 162
+    },
+    {
+      "community_id": "69",
+      "nb_members": 125
+    },
+    {
+      "community_id": "356",
+      "nb_members": 117
+    },
+    {
+      "community_id": "1",
+      "nb_members": 113
+    },
+    {
+      "community_id": "3",
+      "nb_members": 112
+    },
+    {
+      "community_id": "76",
+      "nb_members": 103
+    },
+    {
+      "community_id": "7",
+      "nb_members": 102
+    },
+    {
+      "community_id": "0",
+      "nb_members": 96
+    },
+    {
+      "community_id": "135",
+      "nb_members": 93
+    },
+    {
+      "community_id": "545",
+      "nb_members": 93
+    },
+    {
+      "community_id": "203",
+      "nb_members": 88
+    },
+    {
+      "community_id": "134",
+      "nb_members": 82
+    },
+    {
+      "community_id": "40",
+      "nb_members": 81
+    },
+    {
+      "community_id": "13",
+      "nb_members": 74
+    },
+    {
+      "community_id": "24",
+      "nb_members": 61
+    },
+    {
+      "community_id": "11",
+      "nb_members": 53
+    },
+    {
+      "community_id": "16",
+      "nb_members": 50
+    },
+    {
+      "community_id": "337",
+      "nb_members": 49
+    },
+    {
+      "community_id": "319",
+      "nb_members": 46
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+
+-Goal-
+Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
+
+-Steps-
+1. Identify all entities. For each identified entity, extract the following information:
+- entity_name: Name of the entity, capitalized
+- entity_type: One of the following types: [taxation, tax code, tax exemption, taxpayer, tax authority, tax return, tax penalty, tax assessment, tax deduction, tax regulation, tax compliance, tax liability, tax revenue, tax audit, tax law, tax administration, taxpayer rights, tax incentives, tax obligations, tax rates, tax credits, tax forms, tax treaties, tax evasion, tax avoidance, tax collection, tax relief, tax base, tax period, tax jurisdiction, tax residency, tax identification number, taxable income, taxable event, taxable person, taxable property, taxable transaction]
+- entity_description: Comprehensive description of the entity's attributes and activities
+Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
+For each pair of related entities, extract the following information:
+- source_entity: name of the source entity, as identified in step 1
+- target_entity: name of the target entity, as identified in step 1
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_strength: an integer score between 1 to 10, indicating strength of the relationship between the source entity and target entity
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in French as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into French, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
+-Examples-
+######################
+
+Example 1:
+
+entity_types: [taxation, tax code, tax exemption, taxpayer, tax authority, tax return, tax penalty, tax assessment, tax deduction, tax regulation, tax compliance, tax liability, tax revenue, tax audit, tax law, tax administration, taxpayer rights, tax incentives, tax obligations, tax rates, tax credits, tax forms, tax treaties, tax evasion, tax avoidance, tax collection, tax relief, tax base, tax period, tax jurisdiction, tax residency, tax identification number, taxable income, taxable event, taxable person, taxable property, taxable transaction]
+text:
+ de l'action
+à la date de l'attribution de l'option et le prix de l'action payé par
+le salarié.
+
+Toutefois, l'exonération est subordonnée aux deux conditions suivantes :
+
+-   a)  L'abondement ne doit pas dépasser 10 % de la valeur de l'action
+        à la date de l'attribution de l'option ;
+
+A défaut, la fraction excédant le taux d'abondement tel que fixé
+ci-dessus est considérée comme un complément de salaire imposé au taux
+du barème fixé au I de l'article 73 ci -dessous et ce, au titre de
+l'année de la levée de l'option.
+
+-   b)  les actions acquises doivent revêtir la forme nominative et leur
+        cession ne doit pas intervenir avant une période
+        d'indisponibilité de 3 ans à compter de la date de la levée de
+        l'option 294 .
+
+Dans ce cas, la différence entre la valeur de l'action à la date de la
+levée de l
+------------------------
+output:
+("entity"{tuple_delimiter}DONATAIRES{tuple_delimiter}TAXPAYER{tuple_delimiter}Les donataires sont des personnes qui reçoivent des biens ou des droits, et sont solidairement redevables des droits simples liquidés en cas d'indication inexacte de leur lien de parenté.)
+{record_delimiter}
+("entity"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}TAXPAYER{tuple_delimiter}L'ancien propriétaire est la personne qui a précédemment possédé un bien et a la faculté de déposer des actes d'enregistrement dans un délai imparti.)
+{record_delimiter}
+("entity"{tuple_delimiter}BUREAU DE L'ENREGISTREMENT{tuple_delimiter}TAX AUTHORITY{tuple_delimiter}Le bureau de l'enregistrement est l'entité compétente pour enregistrer les actes de vente ou de mutation de biens immobiliers.)
+{record_delimiter}
+("entity"{tuple_delimiter}PÉNALITÉ{tuple_delimiter}TAX PENALTY{tuple_delimiter}La pénalité est une sanction financière imposée en cas de non-respect des obligations fiscales, comme indiqué dans les articles 206 et 208.)
+{record_delimiter}
+("entity"{tuple_delimiter}MAJORATIONS{tuple_delimiter}TAX PENALTY{tuple_delimiter}Les majorations sont des augmentations des montants dus en raison de retards ou d'inexactitudes dans les déclarations fiscales.)
+{record_delimiter}
+("entity"{tuple_delimiter}ACTES SOUS SEING PRIVÉ{tuple_delimiter}TAX FORM{tuple_delimiter}Les actes sous seing privé sont des documents légaux qui constatent des ventes ou des mutations à titre gratuit de biens immobiliers ou de droits réels.)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}Les donataires et l'ancien propriétaire sont liés par la responsabilité solidaire des droits simples liquidés en cas d'indication inexacte.{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}BUREAU DE L'ENREGISTREMENT{tuple_delimiter}L'ancien propriétaire doit déposer des actes au bureau de l'enregistrement dans un délai de trois mois.{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}PÉNALITÉ{tuple_delimiter}Les donataires peuvent être soumis à des pénalités en cas d'indication inexacte de leur lien de parenté.{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}MAJORATIONS{tuple_delimiter}Les donataires peuvent également être soumis à des majorations en cas de non-respect des obligations fiscales.{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}ACTES SOUS SEING PRIVÉ{tuple_delimiter}L'ancien propriétaire doit fournir des actes sous seing privé pour prouver les ventes ou mutations de biens.{tuple_delimiter}7)
+{completion_delimiter}
+#############################
+
+
+Example 2:
+
+entity_types: [taxation, tax code, tax exemption, taxpayer, tax authority, tax return, tax penalty, tax assessment, tax deduction, tax regulation, tax compliance, tax liability, tax revenue, tax audit, tax law, tax administration, taxpayer rights, tax incentives, tax obligations, tax rates, tax credits, tax forms, tax treaties, tax evasion, tax avoidance, tax collection, tax relief, tax base, tax period, tax jurisdiction, tax residency, tax identification number, taxable income, taxable event, taxable person, taxable property, taxable transaction]
+text:
+us, sont
+    applicables à compter du 1er janvier 2016.
+
+Pour le calcul du montant de la taxe non apparente au titre de l'année
+2016, le pourcentage de récupération prévu à l'article 125 ter précité
+est déterminé d'après les opérations d'achat et de vente réalisées au
+cours de l'année 2015.
+
+-   11- Les dispositions des articles 131-19° et 133-I-F-2° du code
+    général des impôts, telles que complétées par le paragraphe I
+    ci-dessus sont applicables aux actes conclus à compter du 1er
+    janvier 2016 ;
+-   12- La suppression de l'imputation de la cotisation minimale
+    découlant des dispositions de l'article 144-I-E du code générale des
+    impôts, telles que modifiées par le paragraphe I ci-dessus est
+    applicable au titre des exercices ouverts à compter du 1 er janvier
+    2016 ;
+-   13- Les dispositions des
+------------------------
+output:
+("entity"{tuple_delimiter}DONATAIRES{tuple_delimiter}TAXPAYER{tuple_delimiter}Les donataires sont des personnes qui reçoivent des biens ou des droits, et sont solidairement redevables des droits simples liquidés en cas d'indication inexacte de leur lien de parenté.)
+{record_delimiter}
+("entity"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}TAXPAYER{tuple_delimiter}L'ancien propriétaire est une personne qui a précédemment possédé un bien et a la faculté de déposer des actes d'enregistrement dans un délai imparti.)
+{record_delimiter}
+("entity"{tuple_delimiter}BUREAU DE L'ENREGISTREMENT{tuple_delimiter}TAX AUTHORITY{tuple_delimiter}Le bureau de l'enregistrement est l'autorité compétente pour enregistrer les actes de vente ou de mutation de biens immobiliers.)
+{record_delimiter}
+("entity"{tuple_delimiter}PÉNALITÉ{tuple_delimiter}TAX PENALTY{tuple_delimiter}La pénalité est une sanction financière imposée en cas de non-respect des obligations fiscales, comme indiqué dans les articles 206 et 208.)
+{record_delimiter}
+("entity"{tuple_delimiter}MAJORATIONS{tuple_delimiter}TAX PENALTY{tuple_delimiter}Les majorations sont des augmentations des montants dus en raison de retards ou d'inexactitudes dans les déclarations fiscales.)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}PÉNALITÉ{tuple_delimiter}Les donataires sont redevables de pénalités en cas d'indication inexacte de leur lien de parenté{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}BUREAU DE L'ENREGISTREMENT{tuple_delimiter}L'ancien propriétaire doit déposer des actes au bureau de l'enregistrement dans un délai de trois mois après l'expiration des délais impartis{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}DONATAIRES{tuple_delimiter}L'ancien propriétaire peut avoir des relations avec les donataires lors de la vente ou de la mutation de biens{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}MAJORATIONS{tuple_delimiter}Les donataires peuvent être soumis à des majorations en cas de non-respect des obligations fiscales{tuple_delimiter}5)
+{completion_delimiter}
+#############################
+
+
+Example 3:
+
+entity_types: [taxation, tax code, tax exemption, taxpayer, tax authority, tax return, tax penalty, tax assessment, tax deduction, tax regulation, tax compliance, tax liability, tax revenue, tax audit, tax law, tax administration, taxpayer rights, tax incentives, tax obligations, tax rates, tax credits, tax forms, tax treaties, tax evasion, tax avoidance, tax collection, tax relief, tax base, tax period, tax jurisdiction, tax residency, tax identification number, taxable income, taxable event, taxable person, taxable property, taxable transaction]
+text:
+
+donataires a été inexactement indiqué, les parties sont solidairement
+redevables, sauf leur recours entre elles, des droits simples liquidés
+compte tenu du véritable lien de parenté, ainsi que de la pénalité et
+des majorations prévues aux articles 206 et 208 ci-dessous.
+
+V.- L'ancien propriétaire ou l'ancien possesseur a la faculté de déposer
+au bureau de l'enregistrement compétent, dans les trois (3) mois qui
+suivent l'expiration des délais impartis pour l'enregistrement, les
+actes sous seing privé stipulant vente ou mutation à titre gratuit
+d'immeubles, de droits réels immobiliers, de fonds de commerce ou de
+clientèle ou portant bail, cession de bail ou sous-location de ces mêmes
+biens.
+
+A défaut d'actes sous seing privé constatant lesdites ventes ou
+mutations à titre gratuit d'immeubles, de fonds de commerce ou de
+clientèle, l'ancien propriétaire souscrira une déclaration des
+------------------------
+output:
+("entity"{tuple_delimiter}DONATAIRES{tuple_delimiter}TAXPAYER{tuple_delimiter}Les donataires sont des personnes qui reçoivent des biens ou des droits, et sont solidairement redevables des droits simples liquidés en cas d'indication inexacte de leur lien de parenté.)
+{record_delimiter}
+("entity"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}TAXPAYER{tuple_delimiter}L'ancien propriétaire est la personne qui a précédemment possédé un bien et a la faculté de déposer des actes d'enregistrement dans un délai imparti.)
+{record_delimiter}
+("entity"{tuple_delimiter}BUREAU DE L'ENREGISTREMENT{tuple_delimiter}TAX AUTHORITY{tuple_delimiter}Le bureau de l'enregistrement est l'entité compétente pour enregistrer les actes de vente ou de mutation de biens immobiliers.)
+{record_delimiter}
+("entity"{tuple_delimiter}PÉNALITÉ{tuple_delimiter}TAX PENALTY{tuple_delimiter}La pénalité est une sanction financière imposée en cas de non-respect des obligations fiscales, comme indiqué dans les articles 206 et 208.)
+{record_delimiter}
+("entity"{tuple_delimiter}MAJORATIONS{tuple_delimiter}TAX PENALTY{tuple_delimiter}Les majorations sont des augmentations des montants dus en raison de retards ou d'inexactitudes dans les déclarations fiscales.)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}Les donataires et l'ancien propriétaire sont liés par la responsabilité solidaire des droits dus en cas d'indication inexacte des liens de parenté.{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}ANCIEN PROPRIÉTAIRE{tuple_delimiter}BUREAU DE L'ENREGISTREMENT{tuple_delimiter}L'ancien propriétaire doit déposer des actes au bureau de l'enregistrement dans un délai de trois mois après l'expiration des délais d'enregistrement.{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}PÉNALITÉ{tuple_delimiter}Les donataires peuvent être soumis à des pénalités en cas d'indication inexacte de leur lien de parenté.{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}DONATAIRES{tuple_delimiter}MAJORATIONS{tuple_delimiter}Les donataires peuvent également être soumis à des majorations en cas de non-respect des obligations fiscales.{tuple_delimiter}6)
+{completion_delimiter}
+#############################
+
+
+
+-Real Data-
+######################
+entity_types: [taxation, tax code, tax exemption, taxpayer, tax authority, tax return, tax penalty, tax assessment, tax deduction, tax regulation, tax compliance, tax liability, tax revenue, tax audit, tax law, tax administration, taxpayer rights, tax incentives, tax obligations, tax rates, tax credits, tax forms, tax treaties, tax evasion, tax avoidance, tax collection, tax relief, tax base, tax period, tax jurisdiction, tax residency, tax identification number, taxable income, taxable event, taxable person, taxable property, taxable transaction]
+text: {input_text}
+######################
+output:

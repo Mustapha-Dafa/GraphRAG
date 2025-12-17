@@ -1,0 +1,188 @@
+
+-Goal-
+Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
+
+-Steps-
+1. Identify all entities. For each identified entity, extract the following information:
+- entity_name: Name of the entity, capitalized
+- entity_type: One of the following types: [article, law, tax, taxpayer, exemption, foundation, importer, revenue, value added tax, financial year, contribution, deduction, agricultural products, capital, commissioner, accountant, declaration, regulation, operation, association, company, income tax]
+- entity_description: Comprehensive description of the entity's attributes and activities
+Format each entity as ("entity"{tuple_delimiter}<entity_name>{tuple_delimiter}<entity_type>{tuple_delimiter}<entity_description>)
+
+2. From the entities identified in step 1, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
+For each pair of related entities, extract the following information:
+- source_entity: name of the source entity, as identified in step 1
+- target_entity: name of the target entity, as identified in step 1
+- relationship_description: explanation as to why you think the source entity and the target entity are related to each other
+- relationship_strength: an integer score between 1 to 10, indicating strength of the relationship between the source entity and target entity
+Format each relationship as ("relationship"{tuple_delimiter}<source_entity>{tuple_delimiter}<target_entity>{tuple_delimiter}<relationship_description>{tuple_delimiter}<relationship_strength>)
+
+3. Return output in French as a single list of all the entities and relationships identified in steps 1 and 2. Use **{record_delimiter}** as the list delimiter.
+
+4. If you have to translate into French, just translate the descriptions, nothing else!
+
+5. When finished, output {completion_delimiter}.
+
+-Examples-
+######################
+
+Example 1:
+
+entity_types: [article, law, tax, taxpayer, exemption, foundation, importer, revenue, value added tax, financial year, contribution, deduction, agricultural products, capital, commissioner, accountant, declaration, regulation, operation, association, company, income tax]
+text:
+ l'année budgétaire
+2014
+
+1717 Article 4 de la loi de finances n° 110 -13 pour l'année budgétaire
+2014
+
+-   -l'apport doit être effectué entre le 1 er janvier 2014 et le 31
+    décembre 2015 ;
+-   -les titres de capital apportés doivent être évalués par un
+    commissaire aux apports choisi parmi les personnes habilitées à
+    exercer les fonctions de commissaire aux comptes ;
+-   -la société bénéficiaire dudit apport s'engage dans l'acte d'apport
+    à conserver les titres reçus pendant une durée d'au moins quatre (4)
+    ans à compter de la date dudit apport ;
+-   -la personne physique ayant procédé à l'apport de l'ensemble de ses
+    titres de capital s'engage dans l'acte d'apport à payer l'impôt sur
+    le revenu au titre de la plus-value nette résultant de l'opération
+    d'apport,
+------------------------
+output:
+("entity"{tuple_delimiter}ZAÏD IBN SOLTAN{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Zaïd Ibn Soltan a été créée par le dahir portant loi n° 1-93-228 du 22 rebii I 1414 (10 septembre 1993) pour l'ensemble de ses activités ou opérations et pour les revenus éventuels y afférents)
+{record_delimiter}
+("entity"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Mohammed V pour la solidarité est impliquée dans diverses activités ou opérations et pour les revenus éventuels y afférents)
+{record_delimiter}
+("entity"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Mohammed VI de promotion des œuvres sociales de l'éducation formation a été créée par la loi n° 73-00)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI N° 1-93-228{tuple_delimiter}LAW{tuple_delimiter}La loi n° 1-93-228 a été promulguée le 22 rebii I 1414 (10 septembre 1993) et concerne la création de la Fondation Zaïd Ibn Soltan)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI N° 73-00{tuple_delimiter}LAW{tuple_delimiter}La loi n° 73-00 a été promulguée pour créer la Fondation Mohammed VI de promotion des œuvres sociales de l'éducation formation)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 80-18{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 80-18 concerne les dispositions fiscales pour l'année budgétaire 2019)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 50-22{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 50-22 concerne les dispositions fiscales pour l'année budgétaire 2023)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 68-17{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 68-17 concerne les dispositions fiscales pour l'année budgétaire 2018)
+{record_delimiter}
+("relationship"{tuple_delimiter}ZAÏD IBN SOLTAN{tuple_delimiter}LOI N° 1-93-228{tuple_delimiter}La Fondation Zaïd Ibn Soltan a été créée par le dahir portant loi n° 1-93-228{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}LOI N° 73-00{tuple_delimiter}La Fondation Mohammed VI a été créée par la loi n° 73-00{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}LOI DE FINANCES N° 80-18{tuple_delimiter}LOI DE FINANCES N° 50-22{tuple_delimiter}Les lois de finances n° 80-18 et n° 50-22 concernent respectivement les années budgétaires 2019 et 2023{tuple_delimiter}7)
+{record_delimiter}
+("relationship"{tuple_delimiter}LOI DE FINANCES N° 68-17{tuple_delimiter}LOI DE FINANCES N° 50-22{tuple_delimiter}Les lois de finances n° 68-17 et n° 50-22 concernent respectivement les années budgétaires 2018 et 2023{tuple_delimiter}7)
+{completion_delimiter}
+#############################
+
+
+Example 2:
+
+entity_types: [article, law, tax, taxpayer, exemption, foundation, importer, revenue, value added tax, financial year, contribution, deduction, agricultural products, capital, commissioner, accountant, declaration, regulation, operation, association, company, income tax]
+text:
+ " B " ci-dessus,
+l'administration fiscale délivre à l'intéressé, par voie électronique,
+une attestation "d'importation en exonération de la taxe sur la valeur
+ajoutée", qui est transmise à l'administration des douanes et impôts
+indirects.
+
+Les importateurs n'ayant pas accompli les formalités visées dans le
+présent article, peuvent bénéficier du remboursement de la taxe sur la
+valeur ajoutée acquittée à l'importation des produits et matériels
+agricoles précités, dans les conditions et les modalités en vigueur, et
+ce conformément aux dispositions de l'article 103-1° du code général des
+impôts. La demande de remboursement doit être accompagnée du relevé
+détaillé de leur chiffre d'affaires réalisé à l'intérieur en exonération
+de la taxe sur la valeur ajoutée.
+
+Les ventes à l'intérieur des produits et matériels agricoles destinés à
+un usage exclusivement agricole, exonérées de la taxe sur la
+------------------------
+output:
+("entity"{tuple_delimiter}ZAÏD IBN SOLTAN{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Zaïd Ibn Soltan a été créée par le dahir portant loi n° 1-93-228 du 22 rebii I 1414 (10 septembre 1993) pour l'ensemble de ses activités ou opérations et pour les revenus éventuels y afférents)
+{record_delimiter}
+("entity"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Mohammed V pour la solidarité est impliquée dans diverses activités ou opérations et pour les revenus éventuels y afférents)
+{record_delimiter}
+("entity"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Mohammed VI de promotion des œuvres sociales de l'éducation formation a été créée par la loi n° 73-00)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI N° 1-93-228{tuple_delimiter}LAW{tuple_delimiter}La loi n° 1-93-228 a été promulguée le 22 rebii I 1414 (10 septembre 1993) et concerne la création de la Fondation Zaïd Ibn Soltan)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI N° 73-00{tuple_delimiter}LAW{tuple_delimiter}La loi n° 73-00 a été promulguée pour établir la Fondation Mohammed VI de promotion des œuvres sociales de l'éducation formation)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 80-18{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 80-18 concerne les dispositions fiscales pour l'année budgétaire 2019)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 50-22{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 50-22 concerne les dispositions fiscales pour l'année budgétaire 2023)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 68-17{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 68-17 concerne les dispositions fiscales pour l'année budgétaire 2018)
+{record_delimiter}
+("relationship"{tuple_delimiter}ZAÏD IBN SOLTAN{tuple_delimiter}LOI N° 1-93-228{tuple_delimiter}La Fondation Zaïd Ibn Soltan a été créée par le dahir portant loi n° 1-93-228{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}LOI N° 80-18{tuple_delimiter}La Fondation Mohammed V est concernée par les dispositions de la loi de finances n° 80-18 pour l'année budgétaire 2019{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}LOI N° 73-00{tuple_delimiter}La Fondation Mohammed VI a été créée par la loi n° 73-00{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}LOI N° 50-22{tuple_delimiter}La Fondation Mohammed V est concernée par les dispositions de la loi de finances n° 50-22 pour l'année budgétaire 2023{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}LOI DE FINANCES N° 68-17{tuple_delimiter}La Fondation Mohammed VI est concernée par les dispositions de la loi de finances n° 68-17 pour l'année budgétaire 2018{tuple_delimiter}6)
+{completion_delimiter}
+#############################
+
+
+Example 3:
+
+entity_types: [article, law, tax, taxpayer, exemption, foundation, importer, revenue, value added tax, financial year, contribution, deduction, agricultural products, capital, commissioner, accountant, declaration, regulation, operation, association, company, income tax]
+text:
+ikh Zaïd Ibn Soltan créée par le dahir portant loi
+    n° 1 -93 -228 du 22 rebii I 1414 (10 septembre 1993), pour
+    l'ensemble de ses activités ou opérations et pour les revenus
+    éventuels y afférents ;
+-   6°la Fondation Mohammed V pour la solidarité pour l'ensemble de ses
+    activités ou opérations et pour les revenus éventuels y afférents ;
+-   7°la Fondation Mohammed VI de promotion des œuvres sociales de
+    l'éducation formation créée par la loi n° 73-00 promulguée par le
+    dahir n°
+
+17 Articles 7 et 6 des lois de finances n° 80 -18 et n° 50 -22 pour les
+années budgétaires 2019 et 2023
+
+18 Article 8 de la loi de finances n° 68 -17 pour l'année budgétaire
+2018
+
+1 -01 -197 du 11 joumada I 1422 (1 er août 2001
+------------------------
+output:
+("entity"{tuple_delimiter}ZAÏD IBN SOLTAN{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Zaïd Ibn Soltan a été créée par le dahir portant loi n° 1-93-228 du 22 rebii I 1414 (10 septembre 1993) pour l'ensemble de ses activités ou opérations et pour les revenus éventuels y afférents)
+{record_delimiter}
+("entity"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Mohammed V pour la solidarité est impliquée dans diverses activités ou opérations et pour les revenus éventuels y afférents)
+{record_delimiter}
+("entity"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}FOUNDATION{tuple_delimiter}La Fondation Mohammed VI de promotion des œuvres sociales de l'éducation formation a été créée par la loi n° 73-00)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI N° 73-00{tuple_delimiter}LAW{tuple_delimiter}La loi n° 73-00 a été promulguée pour établir la Fondation Mohammed VI de promotion des œuvres sociales de l'éducation formation)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 80-18{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 80-18 concerne les dispositions budgétaires pour l'année 2019)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 50-22{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 50-22 concerne les dispositions budgétaires pour l'année 2023)
+{record_delimiter}
+("entity"{tuple_delimiter}LOI DE FINANCES N° 68-17{tuple_delimiter}LAW{tuple_delimiter}La loi de finances n° 68-17 concerne les dispositions budgétaires pour l'année 2018)
+{record_delimiter}
+("relationship"{tuple_delimiter}ZAÏD IBN SOLTAN{tuple_delimiter}LOI N° 1-93-228{tuple_delimiter}La Fondation Zaïd Ibn Soltan a été créée par le dahir portant loi n° 1-93-228{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}LOI DE FINANCES N° 80-18{tuple_delimiter}La Fondation Mohammed V est concernée par les dispositions de la loi de finances n° 80-18 pour l'année 2019{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED V{tuple_delimiter}LOI DE FINANCES N° 50-22{tuple_delimiter}La Fondation Mohammed V est concernée par les dispositions de la loi de finances n° 50-22 pour l'année 2023{tuple_delimiter}6)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}LOI N° 73-00{tuple_delimiter}La Fondation Mohammed VI a été créée par la loi n° 73-00{tuple_delimiter}8)
+{record_delimiter}
+("relationship"{tuple_delimiter}FONDATION MOHAMMED VI{tuple_delimiter}LOI DE FINANCES N° 68-17{tuple_delimiter}La Fondation Mohammed VI est concernée par les dispositions de la loi de finances n° 68-17 pour l'année 2018{tuple_delimiter}6)
+{completion_delimiter}
+#############################
+
+
+
+-Real Data-
+######################
+entity_types: [article, law, tax, taxpayer, exemption, foundation, importer, revenue, value added tax, financial year, contribution, deduction, agricultural products, capital, commissioner, accountant, declaration, regulation, operation, association, company, income tax]
+text: {input_text}
+######################
+output:

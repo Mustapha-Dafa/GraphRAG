@@ -1,0 +1,11 @@
+openai
+faiss-cpu
+numpy
+python-dotenv
+neo4j
+networkx
+docling
+sentence-transformers
+flask
+graphrag
+lancedb
