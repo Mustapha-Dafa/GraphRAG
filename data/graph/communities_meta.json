@@ -1,0 +1,389 @@
+{
+  "index_path": "C:\\Users\\pc\\Desktop\\cgi_Rag\\data\\graph\\communities.faiss",
+  "meta_count": 21,
+  "dim": 1536,
+  "metric": "cosine",
+  "embed_model": "text-embedding-3-small",
+  "items": [
+    {
+      "community_id": "8",
+      "title": "Système Fiscal au Maroc",
+      "summary": "Le système fiscal marocain comprend divers impôts et taxes, tels que l'Impôt sur les Sociétés et l'Impôt sur le Revenu. Il régule les contributions des personnes morales et physiques, ainsi que les obligations fiscales des entreprises. Les droits d'enregistrement et les taxes spécifiques, comme la Taxe Spéciale Annuelle sur les Véhicules, font également partie intégrante de ce cadre. Les régimes fiscaux, tels que le résultat net réel et simplifié, influencent la déclaration des revenus et des bénéfices. Ce système vise à assurer la collecte des recettes publiques tout en soutenant le développement économique.",
+      "keywords": [
+        "Impôt",
+        "Sociétés",
+        "Revenu",
+        "Taxe",
+        "Droits",
+        "Bénéfices",
+        "Contribuables",
+        "Déclaration",
+        "Régime fiscal",
+        "Revenus",
+        "Personnes morales",
+        "Solidarité"
+      ],
+      "nb_members": 271
+    },
+    {
+      "community_id": "25",
+      "title": "Réglementation des Organismes de Placement Collectif au Maroc",
+      "summary": "Ce document traite des différents types d'organismes de placement collectif au Maroc, tels que les OPCVM, OPCI, et FPC. Il aborde également les aspects fiscaux liés à ces entités, y compris les bénéfices fiscaux, les retenues à la source, et les contributions sociales. Les implications fiscales pour les investisseurs, ainsi que les obligations déclaratives des établissements de crédit et des sociétés d'assurance, sont également discutées. Enfin, il mentionne les dispositions légales pertinentes, notamment la loi n° 103-12 et les seuils d'exonération.",
+      "keywords": [
+        "OPCVM",
+        "OPCI",
+        "FPC",
+        "bénéfice fiscal",
+        "retenue à la source",
+        "contribution sociale",
+        "loi n° 103-12",
+        "investisseurs",
+        "établissements de crédit",
+        "sociétés d'assurance",
+        "déclaration fiscale",
+        "exonération"
+      ],
+      "nb_members": 172
+    },
+    {
+      "community_id": "77",
+      "title": "Fiscalité des entreprises au Maroc",
+      "summary": "Ce document traite des aspects fiscaux liés aux entreprises au Maroc, incluant le chiffre d'affaires, la taxe sur la valeur ajoutée (TVA), et les obligations comptables. Il aborde également les régimes fiscaux applicables aux auto-entrepreneurs, aux commerçants et aux prestataires de services. Les implications fiscales des opérations d'importation et d'exportation, ainsi que les droits et obligations des assujettis, sont également discutés. Enfin, il mentionne les différents types de biens et services concernés par la fiscalité marocaine.",
+      "keywords": [
+        "chiffre d'affaires",
+        "TVA",
+        "auto-entrepreneur",
+        "comptabilité",
+        "importation",
+        "exportation",
+        "assujettis",
+        "régimes fiscaux",
+        "prestataires de services",
+        "biens",
+        "services",
+        "obligations fiscales"
+      ],
+      "nb_members": 162
+    },
+    {
+      "community_id": "69",
+      "title": "Thèmes Fiscaux et Juridiques au Maroc",
+      "summary": "Cette communauté aborde divers aspects fiscaux et juridiques au Maroc, incluant les organismes de placement collectif immobilier, les amendes et pénalités fiscales, ainsi que les modalités d'application des impôts. Elle traite également des sociétés, des exonérations, et des obligations des contribuables. Les termes liés à la déclaration des revenus et à la gestion des biens immobiliers sont également présents. Enfin, des références aux lois et articles spécifiques du Code fiscal marocain sont incluses.",
+      "keywords": [
+        "impôts",
+        "exonération",
+        "sociétés",
+        "amendes",
+        "déclaration",
+        "biens immobiliers",
+        "organismes",
+        "contribuables",
+        "pénalités",
+        "taxe",
+        "recouvrement",
+        "juridique"
+      ],
+      "nb_members": 125
+    },
+    {
+      "community_id": "356",
+      "title": "Fiscalité des Entités au Maroc",
+      "summary": "Ce document traite des différentes entités fiscales au Maroc, y compris les sociétés, les établissements publics et les associations à but non lucratif. Il aborde les impôts applicables, tels que l'impôt sur les sociétés et les exonérations fiscales. Les fondations et organismes de bienfaisance sont également examinés, ainsi que les modalités de déclaration et de conformité fiscale. Enfin, il explore les spécificités des sociétés opérant dans les zones d'accélération industrielle et les implications fiscales des dons et des financements internationaux.",
+      "keywords": [
+        "impôt sur les sociétés",
+        "associations",
+        "fondations",
+        "exonération fiscale",
+        "sociétés",
+        "déclaration fiscale",
+        "zones d'accélération",
+        "dons",
+        "financements",
+        "établissements publics",
+        "conformité fiscale"
+      ],
+      "nb_members": 117
+    },
+    {
+      "community_id": "1",
+      "title": "Thèmes Fiscaux au Maroc",
+      "summary": "Cette liste regroupe des termes et entités liés à la fiscalité au Maroc, incluant des lois, des articles du Code Général des Impôts, et des procédures fiscales. Elle couvre divers aspects tels que les revenus, les cessions d'actifs, et les contrôles fiscaux. Les références aux lois de finances et aux décrets montrent l'évolution des réglementations fiscales. Ces éléments sont essentiels pour comprendre le cadre fiscal marocain et les obligations des contribuables.",
+      "keywords": [
+        "Dahir",
+        "Code Général des Impôts",
+        "loi de finances",
+        "revenus",
+        "contrôle fiscal",
+        "cessions",
+        "déclarations",
+        "indemnités",
+        "pensions",
+        "exonérations",
+        "sociétés",
+        "procédures fiscales"
+      ],
+      "nb_members": 113
+    },
+    {
+      "community_id": "3",
+      "title": "Régime Fiscal et TVA au Maroc",
+      "summary": "Ce document traite des aspects fiscaux liés à la Taxe sur la Valeur Ajoutée (TVA) au Maroc, en incluant les procédures administratives, les obligations des contribuables, et les exonérations possibles. Il aborde également les rôles des inspecteurs des impôts et des services fiscaux locaux dans la gestion des déclarations et des restitutions. Les termes liés aux transactions commerciales, aux demandes d'exonération, et aux pénalités en cas de non-respect des obligations fiscales sont également couverts.",
+      "keywords": [
+        "TVA",
+        "Administration fiscale",
+        "Contribuables",
+        "Exonération",
+        "Restitution",
+        "Déclaration",
+        "Inspecteur des impôts",
+        "Fournisseurs",
+        "Pénalités",
+        "Recouvrement",
+        "Facture",
+        "Domicile fiscal"
+      ],
+      "nb_members": 112
+    },
+    {
+      "community_id": "76",
+      "title": "Réglementation des Droits de Timbre et d'Enregistrement",
+      "summary": "Ce document traite des droits de timbre et d'enregistrement au Maroc, y compris les pénalités et les majorations applicables. Il aborde les formalités requises pour les actes juridiques, les délais de déclaration, ainsi que les conditions d'exonération et de réduction des droits. Les rôles des notaires, des adouls et des experts-comptables sont également mentionnés, tout comme les obligations des parties impliquées dans les transactions. Enfin, il souligne l'importance de la télédéclaration et du télépaiement dans le cadre fiscal.",
+      "keywords": [
+        "Droits de Timbre",
+        "Droits d'enregistrement",
+        "Pénalité",
+        "Notaires",
+        "Télédéclaration",
+        "Majorations",
+        "Acte translatif",
+        "Biens meubles",
+        "Biens immeubles",
+        "Conditions d'exonération",
+        "Procédure d'Immatriculation",
+        "Contributions"
+      ],
+      "nb_members": 103
+    },
+    {
+      "community_id": "7",
+      "title": "Guide sur la Réglementation Fiscale au Maroc",
+      "summary": "Ce document aborde les principales obligations fiscales des contribuables au Maroc, y compris la déclaration des résultats fiscaux, les régularisations fiscales et les procédures de rectification. Il traite également des différents régimes d'imposition, tels que le bénéfice forfaitaire et les déclarations mensuelles et trimestrielles. Les droits et obligations des contribuables, ainsi que les sanctions en cas d'infractions fiscales, sont également discutés. Enfin, il met en lumière les documents comptables nécessaires et les délais à respecter pour une conformité optimale.",
+      "keywords": [
+        "déclaration fiscale",
+        "régularisation",
+        "imposition",
+        "contribuable",
+        "documents comptables",
+        "amendes",
+        "procédure de rectification",
+        "bénéfice forfaitaire",
+        "taxe",
+        "infractions fiscales",
+        "délai",
+        "chiffre d'affaires"
+      ],
+      "nb_members": 102
+    },
+    {
+      "community_id": "0",
+      "title": "",
+      "summary": "```json\n{\n  \"title\": \"Réglementation fiscale au Maroc\",\n  \"summary\": \"Le cadre fiscal marocain est régi par le Code Général des Impôts et diverses lois de finances. Ces textes définissent les obligations fiscales des contribuables, les procédures de vérification et les modalités de recouvrement. Les articles spécifiques abordent des sujets tels que les plans d'épargne, les contributions sociales et les bénéfices des sociétés. La Direction des Impôts supervise l'application de ces lois et réglementations. Les dahirs et décrets complètent ce cadre législatif.\",\n  \"keywords\": [\"Code Général des Impôts\", \"loi de finances\", \"Direction des Impôts\", \"obligations fiscales\", \"contributions sociales\", \"plans d'épargne\", \"procédures de vérification\", \"recouvrement\", \"dahir\", \"décret\", \"bénéfices\", \"sociétés\"]\n}\n```",
+      "keywords": [],
+      "nb_members": 96
+    },
+    {
+      "community_id": "135",
+      "title": "Réglementation fiscale et procédures administratives au Maroc",
+      "summary": "Ce document traite des différentes procédures fiscales et administratives au Maroc, incluant les obligations des contribuables, les déclarations fiscales, et les recours possibles en cas de litige. Il aborde également les amendes, les redressements fiscaux, et les droits des contribuables. Les rôles des différentes commissions et autorités administratives sont également expliqués, ainsi que les délais et les documents requis pour les déclarations et réclamations fiscales.",
+      "keywords": [
+        "administration",
+        "contribuable",
+        "déclaration",
+        "amende",
+        "recours",
+        "taxe",
+        "procédure",
+        "documents",
+        "commission",
+        "rôle",
+        "obligations",
+        "redressement"
+      ],
+      "nb_members": 93
+    },
+    {
+      "community_id": "545",
+      "title": "",
+      "summary": "```json\n{\n  \"title\": \"Thèmes fiscaux et juridiques au Maroc\",\n  \"summary\": \"Cette communauté aborde divers aspects fiscaux et juridiques au Maroc, incluant les taxes sur les véhicules, les opérations bancaires, et les assurances. Elle traite également des réglementations concernant les énergies renouvelables et les véhicules écologiques. Les termes liés à la gestion des biens et aux transactions commerciales sont également couverts. L'accent est mis sur les obligations fiscales des entreprises et des particuliers dans divers secteurs.\",\n  \"keywords\": [\"taxes\", \"assurances\", \"véhicules\", \"énergies renouvelables\", \"banque\", \"transactions\", \"réglementations\", \"entreprises\", \"biens\", \"opérations\", \"fiscalité\", \"juridique\"]\n}\n```",
+      "keywords": [],
+      "nb_members": 93
+    },
+    {
+      "community_id": "203",
+      "title": "Revenus et Imposition au Maroc",
+      "summary": "Ce document traite des différentes catégories de revenus imposables au Maroc, incluant les revenus professionnels, salariaux, fonciers et de capitaux mobiliers. Il aborde également les spécificités des contrats d'assurance et les opérations d'assurance, ainsi que les formalités d'enregistrement et les droits appliqués. Les termes liés aux indemnités, pensions et allocations sont également couverts. L'objectif est de fournir une vue d'ensemble des obligations fiscales des contribuables marocains.",
+      "keywords": [
+        "revenus",
+        "imposition",
+        "assurances",
+        "pensions",
+        "indemnités",
+        "formalités",
+        "droit fiscal",
+        "capitaux",
+        "exploitation agricole",
+        "professions",
+        "taxe",
+        "déclaration"
+      ],
+      "nb_members": 88
+    },
+    {
+      "community_id": "134",
+      "title": "Thèmes Fiscaux au Maroc",
+      "summary": "Cette communauté aborde divers aspects de la fiscalité au Maroc, incluant l'impôt sur le revenu, les redevances, et les revenus de source étrangère. Elle traite également des obligations fiscales des personnes physiques et morales, ainsi que des spécificités liées aux non-résidents. Les thèmes incluent la conservation des documents, la régularisation fiscale, et les différents types d'impôts et taxes. Les entreprises, les exploitants individuels et les copropriétaires sont également concernés par ces enjeux fiscaux.",
+      "keywords": [
+        "impôt sur le revenu",
+        "revenus étrangers",
+        "retenue à la source",
+        "entreprises",
+        "non-résidents",
+        "taxe professionnelle",
+        "comptabilité",
+        "rémunérations",
+        "charges",
+        "produits",
+        "déclarations fiscales",
+        "recouvrement"
+      ],
+      "nb_members": 82
+    },
+    {
+      "community_id": "40",
+      "title": "",
+      "summary": "```json\n{\n  \"title\": \"Fiscalité des entreprises et associations au Maroc\",\n  \"summary\": \"Ce document traite des aspects fiscaux liés aux entreprises et associations au Maroc, y compris les jeunes entreprises innovantes, les exonérations fiscales, et les différentes lois régissant les impôts. Il aborde également les charges de recherche et développement, les revenus professionnels et agricoles, ainsi que les obligations de déclaration. Les termes juridiques et les réglementations en matière de contrôle fiscal sont également couverts, offrant un aperçu complet des obligations fiscales des entités. Enfin, il mentionne les implications des conventions et des statuts spécifiques comme 'Casablanca Finance City'.\",\n  \"keywords\": [\"fiscalité\", \"entreprises\", \"associations\", \"exonération\", \"lois fiscales\", \"revenus\", \"déclaration\", \"contrôle fiscal\", \"jeunes entreprises\", \"innovation\", \"Casablanca Finance City\"]\n}\n```",
+      "keywords": [],
+      "nb_members": 81
+    },
+    {
+      "community_id": "13",
+      "title": "Fiscalité des Sociétés et Activités Professionnelles au Maroc",
+      "summary": "Ce document traite des différentes formes juridiques d'entités commerciales au Maroc, y compris les sociétés en participation, les sociétés en nom collectif et les coopératives. Il aborde également les obligations fiscales telles que l'impôt sur les sociétés, la déclaration annuelle et les régimes fiscaux applicables. Les termes liés aux revenus professionnels, à la comptabilité et aux transactions immobilières sont également couverts. Enfin, il mentionne les spécificités des entreprises non résidentes et des sociétés exportatrices.",
+      "keywords": [
+        "sociétés",
+        "impôt",
+        "déclaration",
+        "revenus",
+        "comptabilité",
+        "coopératives",
+        "activités",
+        "immobilier",
+        "entreprises",
+        "fiscalité",
+        "transferts",
+        "régimes"
+      ],
+      "nb_members": 74
+    },
+    {
+      "community_id": "24",
+      "title": "Aspects fiscaux et juridiques au Maroc",
+      "summary": "Ce document aborde les éléments clés du cadre fiscal et juridique au Maroc, incluant les obligations des entités comme les associations de micro-crédit et les organismes financiers. Il traite des procédures d'enregistrement, des droits d'enregistrement, ainsi que des rôles des notaires, avocats et autres professionnels impliqués. Les termes liés à la fiscalité, tels que le numéro d'identification fiscale et la T.V.A., sont également couverts. Enfin, il évoque les activités réglementées et les exigences de conformité pour les prestataires de services.",
+      "keywords": [
+        "fiscalité",
+        "juridique",
+        "enregistrement",
+        "T.V.A.",
+        "notaires",
+        "avocats",
+        "micro-crédit",
+        "obligations",
+        "associations",
+        "organismes financiers",
+        "actes authentiques",
+        "services"
+      ],
+      "nb_members": 61
+    },
+    {
+      "community_id": "11",
+      "title": "Fiscalité des Sociétés et Groupements au Maroc",
+      "summary": "Ce thème aborde les aspects fiscaux et juridiques liés aux sociétés et groupements d'intérêt économique au Maroc. Il inclut des éléments tels que la déclaration du résultat fiscal, l'imposition forfaitaire, et les obligations des contribuables. Les spécificités des sociétés non résidentes et des services fournis à distance sont également couvertes. De plus, les implications fiscales des apports nouveaux et des droits fixes sont discutées, ainsi que les procédures de rectification des impositions.",
+      "keywords": [
+        "sociétés",
+        "groupements",
+        "fiscalité",
+        "déclaration",
+        "imposition",
+        "services",
+        "Maroc",
+        "non résidentes",
+        "apports",
+        "taxation",
+        "Casablanca Finance City",
+        "contribuables"
+      ],
+      "nb_members": 53
+    },
+    {
+      "community_id": "16",
+      "title": "Thèmes Fiscaux et Exonérations au Maroc",
+      "summary": "Ce document traite des divers aspects fiscaux au Maroc, notamment les exonérations fiscales, les conventions de double imposition et les revenus étrangers. Il aborde également les spécificités liées aux coopératives, aux biens d'investissement et aux activités agricoles. Les ventes de produits essentiels et les opérations de construction sont également couvertes, ainsi que les obligations des entités fiscales. Enfin, il met en lumière les formalités administratives et les droits d'enregistrement applicables.",
+      "keywords": [
+        "Exonération",
+        "Revenu",
+        "Coopératives",
+        "Taxe",
+        "Ventes",
+        "Administration Fiscale",
+        "Période d'imposition",
+        "Biens d'investissement",
+        "Convention de double imposition",
+        "Exploitants agricoles",
+        "Droits d'enregistrement",
+        "Véhicules"
+      ],
+      "nb_members": 50
+    },
+    {
+      "community_id": "337",
+      "title": "Entités et Professions Réglementées au Maroc",
+      "summary": "Cette liste présente diverses entités et professions réglementées au Maroc, notamment dans les domaines de la santé, du droit, de l'immobilier et des services. Chaque catégorie d'entité a des obligations fiscales spécifiques, telles que la demande de remboursement et les attestations nécessaires. Les professions comme les avocats, médecins, et comptables sont soumises à des régimes fiscaux particuliers. La compréhension de ces obligations est essentielle pour assurer la conformité et optimiser la gestion fiscale.",
+      "keywords": [
+        "fiscalité",
+        "professions",
+        "réglementation",
+        "remboursement",
+        "obligations",
+        "entités",
+        "juridique",
+        "auto-entrepreneur",
+        "comptables",
+        "médecins",
+        "avocats",
+        "immobilier"
+      ],
+      "nb_members": 49
+    },
+    {
+      "community_id": "319",
+      "title": "Fiscalité et Administration Locale au Maroc",
+      "summary": "Ce thème aborde les interactions entre les entités fiscales et les autorités locales au Maroc. Il inclut des aspects tels que la gestion des taxes, notamment la taxe spéciale annuelle sur les véhicules, et le rôle des représentants de l'autorité locale. Les procédures de recours fiscal et les responsabilités des comptables publics sont également discutées. Enfin, il traite des exonérations fiscales et des obligations des contribuables dans le cadre de la législation en vigueur.",
+      "keywords": [
+        "taxe",
+        "autorité locale",
+        "recours fiscal",
+        "exonération",
+        "comptable public",
+        "véhicule",
+        "impôts",
+        "chambre d'agriculture",
+        "décret",
+        "litiges",
+        "contribuable",
+        "quittance"
+      ],
+      "nb_members": 46
+    }
+  ]
+}

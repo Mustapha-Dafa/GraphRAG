@@ -1,0 +1,51 @@
+-Activité cible-
+Vous êtes un assistant intelligent qui aide un analyste humain à analyser les dispositions fiscales concernant certaines entités présentées dans un document du CGI marocain.
+
+-Objectif-
+Étant donné un document texte potentiellement pertinent pour cette activité, une spécification d'entité et une description de disposition, extraire toutes les entités qui correspondent à la spécification d'entité et toutes les dispositions concernant ces entités.
+
+-Étapes-
+1. Extraire toutes les entités nommées qui correspondent à la spécification d'entité prédéfinie. La spécification d'entité peut être soit une liste de noms d'entités, soit une liste de types d'entités.
+2. Pour chaque entité identifiée à l'étape 1, extraire toutes les dispositions associées à l'entité. Les dispositions doivent correspondre à la description de disposition spécifiée, et l'entité doit être le sujet de la disposition.
+Pour chaque disposition, extraire les informations suivantes :
+- Subject: nom de l'entité qui est sujet de la disposition, en majuscules. L'entité sujet est celle qui est concernée par l'action décrite dans la disposition. Le sujet doit être l'une des entités nommées identifiées à l'étape 1.
+- Object: nom de l'entité qui est objet de la disposition, en majuscules. L'entité objet est celle qui soit applique/gère ou est affectée par l'action décrite dans la disposition. Si l'entité objet est inconnue, utiliser **NONE**.
+- Claim Type: catégorie générale de la disposition, en majuscules. La nommer d'une manière qui peut être répétée sur plusieurs entrées de texte, afin que des dispositions similaires partagent le même type de disposition
+- Claim Status: **TRUE**, **FALSE**, ou **SUSPECTED**. TRUE signifie que la disposition est confirmée, FALSE signifie que la disposition s'est avérée fausse, SUSPECTED signifie que la disposition n'est pas vérifiée.
+- Claim Description: Description détaillée expliquant le raisonnement derrière la disposition, avec toutes les preuves et références connexes.
+- Claim Date: Période (start_date, end_date) pendant laquelle la disposition a été établie. start_date et end_date doivent être au format ISO-8601. Si la disposition a été établie à une seule date plutôt qu'à une plage de dates, définir la même date pour start_date et end_date. Si la date est inconnue, retourner **NONE**.
+- Claim Source Text: Liste de **toutes** les citations du texte original qui sont pertinentes pour la disposition.
+
+Formater chaque disposition comme (<subject_entity>{tuple_delimiter}<object_entity>{tuple_delimiter}<claim_type>{tuple_delimiter}<claim_status>{tuple_delimiter}<claim_start_date>{tuple_delimiter}<claim_end_date>{tuple_delimiter}<claim_description>{tuple_delimiter}<claim_source>)
+
+3. Retourner la sortie en français comme une liste unique de toutes les dispositions identifiées aux étapes 1 et 2. Utiliser **{record_delimiter}** comme délimiteur de liste.
+
+4. Une fois terminé, afficher {completion_delimiter}
+
+-Exemples-
+Exemple 1:
+Spécification d'entité: CONTRIBUABLE
+Description de disposition: obligations fiscales et exonérations associées à une entité
+Texte: Selon l'article 6 du CGI publié le 2020/01/15, les entreprises exportatrices bénéficient d'une exonération totale de l'impôt sur les sociétés pendant les cinq premières années. Cette disposition est applicable aux sociétés créées après le 1er janvier 2019.
+Output:
+
+(ENTREPRISES EXPORTATRICES{tuple_delimiter}IMPOT SUR LES SOCIETES{tuple_delimiter}EXONERATION FISCALE{tuple_delimiter}TRUE{tuple_delimiter}2020-01-15T00:00:00{tuple_delimiter}2020-01-15T00:00:00{tuple_delimiter}Les entreprises exportatrices bénéficient d'une exonération totale de l'impôt sur les sociétés pendant les cinq premières années selon l'article 6 du CGI publié le 2020/01/15, applicable aux sociétés créées après le 1er janvier 2019{tuple_delimiter}Selon l'article 6 du CGI publié le 2020/01/15, les entreprises exportatrices bénéficient d'une exonération totale de l'impôt sur les sociétés pendant les cinq premières années. Cette disposition est applicable aux sociétés créées après le 1er janvier 2019.)
+{completion_delimiter}
+
+Exemple 2:
+Spécification d'entité: CONTRIBUABLE, OPERATIONS
+Description de disposition: sanctions et obligations fiscales associées à une entité
+Texte: Selon l'article 184 du CGI publié le 2019/03/20, les entreprises qui ne déposent pas leur déclaration de TVA dans les délais prescrits sont passibles d'une amende de 500 dirhams. Les opérations de transport international sont exonérées de TVA conformément à l'article 92 depuis le 1er janvier 2018.
+Output:
+
+(ENTREPRISES{tuple_delimiter}TVA{tuple_delimiter}SANCTION FISCALE{tuple_delimiter}TRUE{tuple_delimiter}2019-03-20T00:00:00{tuple_delimiter}2019-03-20T00:00:00{tuple_delimiter}Les entreprises qui ne déposent pas leur déclaration de TVA dans les délais prescrits sont passibles d'une amende de 500 dirhams selon l'article 184 du CGI publié le 2019/03/20{tuple_delimiter}Selon l'article 184 du CGI publié le 2019/03/20, les entreprises qui ne déposent pas leur déclaration de TVA dans les délais prescrits sont passibles d'une amende de 500 dirhams.)
+{record_delimiter}
+(OPERATIONS DE TRANSPORT INTERNATIONAL{tuple_delimiter}TVA{tuple_delimiter}EXONERATION FISCALE{tuple_delimiter}TRUE{tuple_delimiter}2018-01-01T00:00:00{tuple_delimiter}2018-01-01T00:00:00{tuple_delimiter}Les opérations de transport international sont exonérées de TVA conformément à l'article 92 depuis le 1er janvier 2018{tuple_delimiter}Les opérations de transport international sont exonérées de TVA conformément à l'article 92 depuis le 1er janvier 2018.)
+{completion_delimiter}
+
+-Données réelles-
+Utilisez les entrées suivantes pour votre réponse.
+Spécification d'entité: {entity_specs}
+Description de disposition: {claim_description}
+Texte: {input_text}
+Output:
